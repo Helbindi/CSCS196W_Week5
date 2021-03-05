@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+        text-align:center;
+        list-style-position: inside;
+      }
+
+      li button {
+        font-size: 8px;
+        margin-left: 20px;
+        color: #666;
+      }
+      
+      h1,div {
+        text-align:center;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1> Construct a To-do List </h1>
+
+    <div>
+      <label for="task"> Enter a new task: </label>
+      <input type="text" name="task" id="task">
+      <button> Add task </button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <script>
+      const list = document.querySelector('ul');
+      const input = document.querySelector('input');
+      const button = document.querySelector('button');
+
+      button.onclick = function() {
+        let myTask = input.value;
+        input.value = '';
+
+        const listTask = document.createElement('li');
+        const listText = document.createElement('span');
+        const listButton = document.createElement('button');
+
+        listTask.appendChild(listText);
+        listText.textContent = myTask;
+        listTask.appendChild(listButton);
+        listButton.textContent = 'Delete';
+        list.appendChild(listTask);
+
+        listButton.onclick = function(e) {
+          list.removeChild(listTask);
+        }
+
+        input.focus();
+      }
+    </script>
+  </body>
+</html>
